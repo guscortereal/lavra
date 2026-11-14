@@ -1,0 +1,13 @@
+{
+  // Configuração da ponte para quem publica pelo terminal: wrangler deploy
+  "name": "lavra-ponte",
+  "main": "worker.js",
+  "compatibility_date": "2026-01-01",
+  "vars": {
+    // Endereço(s) do site, sem barra no fim, separados por vírgula.
+    "ORIGENS_PERMITIDAS": "https://guscortereal.github.io"
+  }
+  // ANTHROPIC_API_KEY e CODIGO_ACESSO são segredos e não ficam aqui:
+  //   wrangler secret put ANTHROPIC_API_KEY
+  //   wrangler secret put CODIGO_ACESSO
+}

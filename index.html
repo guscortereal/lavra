@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lavra — oficina de minutas do gabinete</title>
+  <meta name="description" content="Oficina de minutas judiciais com agentes em sequência: Extrator, Saneador, Sentenciador, Embargos e Sentinela.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%238f3a1c'/%3E%3Cpath d='M10 7v18h13v-3.4h-9V7z' fill='%23fffaf3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/estilo.css">
+  <script>
+    // Aplica o tema antes de pintar a página, para não piscar.
+    (function () {
+      var tema = null;
+      try { tema = JSON.parse(localStorage.getItem('lavra.config') || '{}').tema; } catch (e) {}
+      if (!tema) tema = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro';
+      document.documentElement.dataset.tema = tema;
+    })();
+  </script>
+</head>
+<body>
+
+<header class="topo">
+  <div class="contem">
+    <a class="marca" href="#/"><span class="ponto"></span>Lavra <small>oficina de minutas</small></a>
+    <nav class="menu" aria-label="Principal">
+      <a href="#/" data-rota="inicio">Início</a>
+      <a href="#/oficina" data-rota="oficina">Oficina</a>
+      <a href="#/agentes" data-rota="agentes">Agentes</a>
+      <a href="#/config" data-rota="config">Configurações</a>
+      <button class="so-icone" id="alternar-tema" type="button" aria-label="Alternar tema claro e escuro" title="Alternar tema">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ INÍCIO ============ -->
+  <div class="pagina" id="pagina-inicio">
+    <section class="abertura">
+      <div class="contem">
+        <div>
+          <p class="sobretitulo">Extrator · Saneador · Sentenciador · Embargos · Sentinela</p>
+          <h1>Dos autos à assinatura, com os <em>seus</em> agentes.</h1>
+          <p class="lide">Lavra reúne em uma só bancada os agentes que o gabinete já usa. Cada um faz uma etapa, o resultado de um alimenta o seguinte, e a decisão continua sendo de quem assina.</p>
+          <div class="acoes">
+            <a class="botao primario grande" href="#/oficina">Abrir a oficina</a>
+            <a class="botao grande" href="#/agentes">Ver os agentes</a>
+          </div>
+        </div>
+        <div class="esteira" aria-label="Sequência dos agentes">
+          <div class="folha"><span class="num">1</span><div><strong>Extrator</strong><span>Lê os autos e monta a Fact Sheet</span></div><span class="selo">fatos</span></div>
+          <div class="folha"><span class="num">2</span><div><strong>Saneador</strong><span>Preliminares, pontos controvertidos e provas</span></div><span class="selo">art. 357</span></div>
+          <div class="folha"><span class="num">3</span><div><strong>Sentenciador</strong><span>Redige a sentença conforme as diretrizes</span></div><span class="selo">minuta</span></div>
+          <div class="folha destaque"><span class="num">4</span><div><strong>Sentinela</strong><span>Audita a minuta em oito camadas</span></div><span class="selo">laudo</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faixa clara" id="como-funciona">
+      <div class="contem">
+        <h2>Como funciona</h2>
+        <p class="entrada">Um caso percorre a bancada da esquerda para a direita. Você pode entrar em qualquer etapa: quem já tem a Fact Sheet vai direto ao Sentenciador; quem só quer conferir uma minuta abre o Sentinela.</p>
+        <ol class="passos">
+          <li><h3>Abra um caso</h3><p>Cole o inteiro teor copiado do eProc ou anexe o PDF dos autos. O caso fica guardado só neste navegador.</p></li>
+          <li><h3>Dê o comando</h3><p>Escreva as diretrizes ou parta de uma das variantes da biblioteca do núcleo: improcedência, revisional, fraude, embargos.</p></li>
+          <li><h3>Receba a minuta</h3><p>O agente redige enquanto você acompanha. Edite no próprio painel, copie para o editor do tribunal ou baixe em Word.</p></li>
+          <li><h3>Confira antes de assinar</h3><p>Um clique leva a minuta ao Sentinela, que devolve o laudo com a classificação e as correções pontuais.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="faixa" id="recursos">
+      <div class="contem">
+        <h2>O que há na bancada</h2>
+        <p class="entrada">Nada aqui é genérico: as instruções são as do gabinete, na versão que você mantém, e podem ser trocadas quando o agente evoluir.</p>
+        <div class="grade">
+          <article class="cartao"><h3>Agentes encadeados</h3><p>A Fact Sheet do Extrator entra sozinha no Sentenciador; a minuta gerada entra sozinha no Sentinela. Sem copiar e colar entre conversas.</p></article>
+          <article class="cartao"><h3>Biblioteca de diretrizes</h3><p>As variantes do NUJUC ficam a um clique. Campo <code>[PREENCHER]</code> esquecido trava o envio antes de gastar uma chamada.</p></article>
+          <article class="cartao"><h3>Laudo com veredito</h3><p>O Sentinela classifica a minuta em aprovada, com ressalvas, inadequada ou rejeitada, e o selo aparece no topo do resultado.</p></article>
+          <article class="cartao"><h3>Instruções sob seu controle</h3><p>Veja, edite, restaure ou importe as instruções de cada agente. A nota de execução que o site acrescenta fica à vista.</p></article>
+          <article class="cartao"><h3>Saída pronta para o editor</h3><p>Copie com formatação, baixe em Word ou imprima em PDF. O texto pode ser ajustado antes, direto no painel.</p></article>
+          <article class="cartao"><h3>Funciona sem instalar</h3><p>É uma página estática. Abre do computador, do GitHub Pages ou de qualquer hospedagem de arquivos.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faixa clara" id="sigilo">
+      <div class="contem duas">
+        <div>
+          <h2>Sigilo antes do envio</h2>
+          <p class="entrada" style="margin-bottom:0">Com a máscara local ligada, CPF, CNPJ, e-mail, telefone, CEP e os nomes que você indicar são trocados por marcadores ainda no seu navegador. A IA trabalha com os marcadores; os dados reais voltam ao texto só na sua máquina.</p>
+          <ul class="lista-limpa">
+            <li><strong>Nada fica em servidor do site.</strong> Casos, minutas e configurações moram no armazenamento deste navegador.</li>
+            <li><strong>A chave não vai para o repositório.</strong> Fica no seu navegador ou, no modo ponte, guardada como segredo no servidor da ponte.</li>
+            <li><strong>Limite claro.</strong> PDF anexado segue como está: a máscara só alcança texto colado. Valores, datas e número do processo não são mascarados, porque a conferência depende deles.</li>
+          </ul>
+        </div>
+        <div class="antes-depois" aria-label="Exemplo da máscara local">
+          <div><b>O que você cola</b>Maria Aparecida de Souza, CPF 123.456.789-09, residente no CEP 30130-000, telefone (31) 99876-5432…</div>
+          <div><b>O que a IA recebe</b><mark>«NOME_0001»</mark>, CPF <mark>«CPF_0001»</mark>, residente no CEP <mark>«CEP_0001»</mark>, telefone <mark>«TELEFONE_0001»</mark>…</div>
+          <div><b>O que você lê na minuta</b>Maria Aparecida de Souza, CPF 123.456.789-09…</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faixa" id="ligacao">
+      <div class="contem">
+        <h2>Três formas de ligar à IA</h2>
+        <p class="entrada">Escolha em Configurações. Dá para começar pela primeira hoje e mudar depois, sem perder os casos.</p>
+        <div class="grade">
+          <article class="cartao"><h3>Sem chave</h3><p>O site monta o prompt completo e copia. Você cola no Claude, traz a resposta de volta e a esteira segue. Não exige conta de API nem servidor.</p></article>
+          <article class="cartao"><h3>Chave própria</h3><p>Sua chave da API fica só neste navegador e a chamada sai direto dele. Simples, mas algumas redes bloqueiam o endereço da API.</p></article>
+          <article class="cartao"><h3>Ponte</h3><p>Um pequeno serviço seu guarda a chave e repassa as chamadas, protegido por código de acesso. É o caminho para uso em rede restrita ou em equipe.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faixa clara">
+      <div class="contem">
+        <p class="principio">O agente redige e confere. Quem decide o resultado, lê o que foi escrito e assina é o magistrado. A oficina existe para que essa leitura comece de um texto melhor.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ OFICINA / AGENTES / CONFIG (montadas pelo app.js) ============ -->
+  <div class="pagina" id="pagina-oficina"><div class="contem oficina" id="oficina"></div></div>
+  <div class="pagina secao" id="pagina-agentes"><div class="contem" id="agentes"></div></div>
+  <div class="pagina secao" id="pagina-config"><div class="contem" id="config"></div></div>
+
+</main>
+
+<footer class="rodape">
+  <div class="contem">
+    <span>Lavra — ferramenta de apoio à redação. Toda minuta deve ser lida, revisada e assinada pelo magistrado.</span>
+    <span>Os dados dos casos ficam neste navegador.</span>
+  </div>
+</footer>
+
+<dialog id="dialogo"></dialog>
+<div class="torrada" id="torrada" role="status" aria-live="polite" hidden></div>
+
+<noscript><p style="padding:24px;text-align:center">A oficina precisa de JavaScript ativado no navegador.</p></noscript>
+
+<script src="agentes/agentes.js"></script>
+<script src="js/mascara.js"></script>
+<script src="js/markdown.js"></script>
+<script src="js/armazenamento.js"></script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
