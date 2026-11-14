@@ -122,17 +122,22 @@
     setTimeout(() => URL.revokeObjectURL(url), 2000);
   }
 
+  /** Rejeita se a promessa não se resolver no prazo (o navegador pode deixá-la pendente). */
+  function comPrazo(promessa, ms) {
+    return Promise.race([promessa, new Promise((_, rejeitar) => setTimeout(() => rejeitar(new Error('prazo')), ms))]);
+  }
+
   async function copiar(texto, html) {
     try {
       if (html && window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
-        await navigator.clipboard.write([new ClipboardItem({
+        await comPrazo(navigator.clipboard.write([new ClipboardItem({
           'text/plain': new Blob([texto], { type: 'text/plain' }),
           'text/html': new Blob([html], { type: 'text/html' }),
-        })]);
+        })]), 2000);
         return true;
       }
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(texto);
+        await comPrazo(navigator.clipboard.writeText(texto), 2000);
         return true;
       }
     } catch (erro) { /* cai na alternativa abaixo */ }
@@ -266,10 +271,12 @@
 
     if (config.modo === 'prompt') {
       const prompt = promptParaColar(pedido);
-      const ok = await copiar(prompt);
+      // A cópia começa ainda dentro do clique; o painel aparece sem esperar por ela,
+      // para o caso de o navegador demorar ou pedir permissão.
+      const copia = copiar(prompt);
       estado.colar = { agenteId: agente.id, prompt, mascara, temPdf: pedido.documentos.length > 0 };
       renderOficina();
-      torrada(ok ? 'Prompt copiado. Cole no Claude.' : 'Não consegui copiar sozinho: use o botão "Copiar de novo".');
+      torrada((await copia) ? 'Prompt copiado. Cole no Claude.' : 'Não consegui copiar sozinho: use o botão "Copiar de novo".');
       return;
     }
     if (config.modo === 'direta' && !config.chave.trim()) {
